@@ -8,7 +8,7 @@ setup(
     name='topsis',
     version='0.1',
     packages=find_packages(),
-    url='https://github.com/yourusername/topsis',
+    url='https://github.com/vanshajsingla/TOPSIS-PYTHON-PACKAGE/blob/main/102003346.py',
     author='Vanshaj Singla',
     author_email='vanshajrnv2002@gmail.com',
     description='A python package for implementing the TOPSIS method',
