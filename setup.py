@@ -1,22 +1,29 @@
-from setuptools import setup, find_packages
+import setuptools
 
-setup(
-    name='topsis',
-    version='0.1',
-    packages=find_packages(),
-    url='https://github.com/vanshajsingla/TOPSIS-PYTHON-PACKAGE/blob/main/102003346.py',
-    author='Vanshaj Singla',
-    author_email='vanshajrnv2002@gmail.com',
-    description='A python package for implementing the TOPSIS method',
-    install_requires=[
-        'numpy'
-    ],
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name="Topsis",
+    version="1.0.4",
+    author="Vanshaj Singla",
+    author_email="vanshajrnv2002@gmail.com",
+    description="Calculates Topsis Score and Rank them accordingly",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    license="MIT",
+    url="https://github.com/vanshajsingla/Topsis-Vanshaj-102003346",
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-    ]
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    packages=["Topsis-Vanshaj-102003346"],
+    include_package_data=True,
+    install_requires='pandas',
+    entry_points={
+        "console_scripts": [
+            "topsis=Topsis-Vanshaj-102003346.topsis:main",
+        ]
+    },
 )
