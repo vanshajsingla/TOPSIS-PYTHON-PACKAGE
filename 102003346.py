@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import sys
 
+
 def main():
     # Arguments not equal to 5
     if len(sys.argv) != 5:
@@ -75,12 +76,12 @@ def Normalize(temp_dataset, nCol, weights):
 
 def Calc_Values(temp_dataset, nCol, impact):
     # print(" Calculating Positive and Negative values...\n")
-    p_sln = (temp_dataset.max().values)[1:]
-    n_sln = (temp_dataset.min().values)[1:]
+    pval = (temp_dataset.max().values)[1:]
+    nval = (temp_dataset.min().values)[1:]
     for i in range(1, nCol):
         if impact[i-1] == '-':
-            p_sln[i-1], n_sln[i-1] = n_sln[i-1], p_sln[i-1]
-    return p_sln, n_sln
+            pval[i-1], nval[i-1] = nval[i-1], pval[i-1]
+    return pval, nval
 
 
 def topsis_pipy(temp_dataset, dataset, nCol, weights, impact):
@@ -88,15 +89,15 @@ def topsis_pipy(temp_dataset, dataset, nCol, weights, impact):
     temp_dataset = Normalize(temp_dataset, nCol, weights)
 
     # Calculating positive and negative values
-    p_sln, n_sln = Calc_Values(temp_dataset, nCol, impact)
+    pval, nval = Calc_Values(temp_dataset, nCol, impact)
 
     # calculating topsis score
     score = []
     for i in range(len(temp_dataset)):
         temp_p, temp_n = 0, 0
         for j in range(1, nCol):
-            temp_p = temp_p + (p_sln[j-1] - temp_dataset.iloc[i, j])**2
-            temp_n = temp_n + (n_sln[j-1] - temp_dataset.iloc[i, j])**2
+            temp_p = temp_p + (pval[j-1] - temp_dataset.iloc[i, j])**2
+            temp_n = temp_n + (nval[j-1] - temp_dataset.iloc[i, j])**2
         temp_p, temp_n = temp_p**0.5, temp_n**0.5
         score.append(temp_n/(temp_p + temp_n))
     dataset['Topsis Score'] = score
